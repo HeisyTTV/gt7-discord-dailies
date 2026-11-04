@@ -1,0 +1,38 @@
+name: GT7 Daily Races - mandag kl. 10
+
+on:
+  schedule:
+    - cron: '0 10 * * 1'
+      timezone: 'Europe/Copenhagen'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Send beskeden til Discord? (false = kun forhåndsvisning)'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gt7-monday-post
+  cancel-in-progress: false
+
+jobs:
+  post-dailies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Hent projektfiler
+        uses: actions/checkout@v4
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Kontroller og offentliggor GT7-lob
+        env:
+          GT_GRIDSTATS_API_KEY: ${{ secrets.GT_GRIDSTATS_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PUBLISH: ${{ github.event_name == 'schedule' || inputs.publish == true }}
+        run: python gt7_dailies.py
