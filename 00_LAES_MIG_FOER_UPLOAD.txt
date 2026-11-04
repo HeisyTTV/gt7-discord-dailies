@@ -1,0 +1,13 @@
+GT7 DISCORD - FILER TIL GITHUB
+
+1) Aabn denne mappe i Finder.
+2) Tryk Cmd + Shift + . (punktum) for at vise skjulte filer.
+3) Nu ses mappen .github.
+4) Upload disse fire ting til roden af GitHub-repository gt7-discord-dailies:
+   - .github (indeholdende workflows/gt7-monday.yml)
+   - gt7_dailies.py
+   - README_DANSK.md
+   - tests
+
+Denne tekstfil er blot en forklaring og behoever ikke uploades.
+API-noegle fra GT-GridStats kraeves foer den kan hente live data.
