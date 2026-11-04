@@ -144,7 +144,7 @@ def main():
         print("FORHÅNDSVISNING (ingen Discord-besked sendt):")
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return
-    fetch_json(webhook_url, headers={"Content-Type": "application/json"}, payload=payload)
+    fetch_json(webhook_url, headers={"Content-Type": "application/json", "User-Agent": "GT7-Race-Center/1.0"}, payload=payload)
     print(f"Offentliggjort: Race A, B og C for uge med mandag {monday}")
 
 
